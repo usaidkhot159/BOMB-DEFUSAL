@@ -1,0 +1,33 @@
+/* ======= HUD ======= */
+#hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--gap-sm) var(--gap-md);
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  gap: var(--gap-sm);
+}
+.hud-left, .hud-right {
+  display: flex;
+  gap: var(--gap-sm);
+  align-items: center;
+  flex: 1;
+}
+.hud-right { justify-content: flex-end; }
+.hud-center { flex-shrink: 0; }
+.hud-item {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--grey-light);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+.hud-item span { color: var(--white); font-weight: 700; }
+#hud-lives span { color: var(--red); }
+#hud-coins span { color: var(--amber); }
+#hud-hints span { color: var(--amber); }
