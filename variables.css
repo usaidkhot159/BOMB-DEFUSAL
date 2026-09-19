@@ -1,0 +1,56 @@
+:root {
+  /* === PALETTE === */
+  --bg:           #080c10;
+  --bg-panel:     #0d1117;
+  --bg-card:      #111820;
+  --border:       #1e2d3d;
+  --border-glow:  #00ffe7;
+
+  --green:        #00ffe7;
+  --green-dim:    #00a89a;
+  --red:          #ff2d55;
+  --red-dim:      #8b0000;
+  --amber:        #ffb703;
+  --amber-dim:    #7a5500;
+  --blue:         #3a86ff;
+  --yellow:       #ffd166;
+  --white:        #e8f4f8;
+  --grey:         #4a5568;
+  --grey-light:   #8899aa;
+
+  /* Wire colours */
+  --wire-red:     #ff2d55;
+  --wire-blue:    #3a86ff;
+  --wire-green:   #06d6a0;
+  --wire-yellow:  #ffd166;
+  --wire-white:   #e8f4f8;
+  --wire-black:   #2d3748;
+  --wire-orange:  #fb8500;
+  --wire-purple:  #a855f7;
+
+  /* === TYPOGRAPHY === */
+  --font-mono:    'Share Tech Mono', monospace;
+  --font-display: 'Orbitron', sans-serif;
+  --font-ui:      'Rajdhani', sans-serif;
+
+  /* === SPACING === */
+  --gap-xs: 4px;
+  --gap-sm: 8px;
+  --gap-md: 16px;
+  --gap-lg: 24px;
+  --gap-xl: 40px;
+
+  /* === RADIUS === */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 16px;
+
+  /* === SHADOWS === */
+  --glow-green: 0 0 12px #00ffe766, 0 0 32px #00ffe722;
+  --glow-red:   0 0 12px #ff2d5566, 0 0 32px #ff2d5522;
+  --glow-amber: 0 0 12px #ffb70366, 0 0 32px #ffb70322;
+
+  /* === TRANSITIONS === */
+  --t-fast: 0.15s ease;
+  --t-med:  0.3s ease;
+}
