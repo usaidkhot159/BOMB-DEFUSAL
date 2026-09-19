@@ -1,0 +1,69 @@
+/* ======= KEYFRAMES ======= */
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.1; }
+}
+@keyframes shake {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-6px); }
+  40%  { transform: translateX(6px); }
+  60%  { transform: translateX(-4px); }
+  80%  { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes explode {
+  0%   { transform: scale(1);   opacity: 1; filter: brightness(1); }
+  30%  { transform: scale(1.4); opacity: 1; filter: brightness(3) saturate(0); }
+  60%  { transform: scale(2);   opacity: 0.8; }
+  100% { transform: scale(3);   opacity: 0; }
+}
+@keyframes screenFlash {
+  0%, 100% { background: transparent; }
+  50%       { background: rgba(255,45,85,0.25); }
+}
+@keyframes glitch {
+  0%   { clip-path: inset(0 0 95% 0); transform: translate(-3px, 0); }
+  10%  { clip-path: inset(30% 0 50% 0); transform: translate(3px, 0); }
+  20%  { clip-path: inset(70% 0 10% 0); transform: translate(-2px, 0); }
+  30%  { clip-path: inset(0 0 0 0); transform: translate(0, 0); }
+  100% { clip-path: inset(0 0 0 0); transform: translate(0, 0); }
+}
+
+/* ======= APPLIED ANIMATIONS ======= */
+.animate-in {
+  animation: fadeIn 0.4s ease both;
+}
+.screen-shake {
+  animation: shake 0.4s ease;
+}
+.flash-red {
+  animation: screenFlash 0.3s ease 3;
+}
+.exploding {
+  animation: explode 0.8s ease forwards;
+}
+.glitch-text::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0; top: 0;
+  color: var(--red);
+  animation: glitch 0.4s linear;
+  opacity: 0.7;
+}
