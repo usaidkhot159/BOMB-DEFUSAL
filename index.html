@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💣 BOMB DEFUSAL — CLASSIFIED</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/screens.css" />
+  <link rel="stylesheet" href="css/bomb.css" />
+  <link rel="stylesheet" href="css/timer.css" />
+  <link rel="stylesheet" href="css/puzzles.css" />
+  <link rel="stylesheet" href="css/hud.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/shop.css" />
+</head>
+<body>
+  <!-- SCANLINE OVERLAY -->
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- MENU SCREEN -->
+  <div id="screen-menu" class="screen active">
+    <div class="menu-container">
+      <div class="classified-stamp">CLASSIFIED</div>
+      <div class="logo-wrap">
+        <div class="logo-icon">💣</div>
+        <h1 class="logo-title">BOMB<br><span>DEFUSAL</span></h1>
+        <div class="logo-sub">OPERATION: ZERO HOUR</div>
+      </div>
+      <nav class="menu-nav">
+        <button class="btn-primary" id="btn-start">▶ START MISSION</button>
+        <button class="btn-secondary" id="btn-difficulty">⚙ DIFFICULTY: <span id="diff-label">ROOKIE</span></button>
+        <button class="btn-secondary" id="btn-shop">🛒 SHOP</button>
+        <button class="btn-secondary" id="btn-stats">📊 STATS</button>
+        <button class="btn-secondary" id="btn-how">❓ HOW TO PLAY</button>
+      </nav>
+      <div class="menu-footer">
+        <span class="coins-display">🪙 <span id="menu-coins">0</span></span>
+        <span class="hiscore-display">🏆 BEST: <span id="menu-hiscore">--</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div id="screen-game" class="screen">
+    <!-- HUD -->
+    <div id="hud">
+      <div class="hud-left">
+        <div class="hud-item" id="hud-level">LVL <span id="val-level">1</span></div>
+        <div class="hud-item" id="hud-puzzle">PUZZLE <span id="val-puzzle">1</span>/<span id="val-total">5</span></div>
+      </div>
+      <div class="hud-center">
+        <div id="timer-wrap">
+          <div id="timer-display">01:30</div>
+          <div id="timer-bar-track"><div id="timer-bar"></div></div>
+        </div>
+      </div>
+      <div class="hud-right">
+        <div class="hud-item" id="hud-lives">❤️ <span id="val-lives">3</span></div>
+        <div class="hud-item" id="hud-coins">🪙 <span id="val-coins">0</span></div>
+        <div class="hud-item" id="hud-hints">💡 <span id="val-hints">2</span></div>
+      </div>
+    </div>
+
+    <!-- BOMB VISUAL -->
+    <div id="bomb-wrap">
+      <div id="bomb-body">
+        <div class="bomb-top">
+          <div class="bomb-light" id="bomb-light"></div>
+          <div class="bomb-brand">T-BOMB v4.0</div>
+        </div>
+        <div class="bomb-screen" id="bomb-screen">
+          <div class="bomb-screen-inner">ARMED</div>
+        </div>
+        <div class="bomb-wires" id="bomb-wires"></div>
+      </div>
+    </div>
+
+    <!-- PUZZLE AREA -->
+    <div id="puzzle-area">
+      <div id="puzzle-title"></div>
+      <div id="puzzle-desc"></div>
+      <div id="puzzle-content"></div>
+      <div id="puzzle-feedback" class="hidden"></div>
+      <div class="puzzle-actions">
+        <button class="btn-hint" id="btn-hint">💡 HINT</button>
+        <button class="btn-pause" id="btn-pause">⏸ PAUSE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAUSE SCREEN -->
+  <div id="screen-pause" class="screen overlay-screen">
+    <div class="overlay-box">
+      <h2>⏸ PAUSED</h2>
+      <p>Mission suspended.</p>
+      <button class="btn-primary" id="btn-resume">▶ RESUME</button>
+      <button class="btn-secondary" id="btn-quit-pause">✖ QUIT MISSION</button>
+    </div>
+  </div>
+
+  <!-- WIN SCREEN -->
+  <div id="screen-win" class="screen overlay-screen">
+    <div class="overlay-box win-box">
+      <div class="result-icon">✅</div>
+      <h2>BOMB DEFUSED!</h2>
+      <p class="result-sub">Agent, mission successful.</p>
+      <div class="result-stats">
+        <div class="stat-row"><span>Time Left</span><span id="win-time">--</span></div>
+        <div class="stat-row"><span>Puzzles Solved</span><span id="win-puzzles">--</span></div>
+        <div class="stat-row"><span>Lives Remaining</span><span id="win-lives">--</span></div>
+        <div class="stat-row accent"><span>Coins Earned</span><span id="win-coins">--</span></div>
+      </div>
+      <button class="btn-primary" id="btn-next-level">▶ NEXT LEVEL</button>
+      <button class="btn-secondary" id="btn-menu-win">↩ MAIN MENU</button>
+    </div>
+  </div>
+
+  <!-- LOSE SCREEN -->
+  <div id="screen-lose" class="screen overlay-screen">
+    <div class="overlay-box lose-box">
+      <div class="result-icon boom-icon">💥</div>
+      <h2>BOOM!</h2>
+      <p class="result-sub" id="lose-reason">The bomb detonated.</p>
+      <div class="result-stats">
+        <div class="stat-row"><span>Level Reached</span><span id="lose-level">--</span></div>
+        <div class="stat-row"><span>Puzzles Solved</span><span id="lose-puzzles">--</span></div>
+      </div>
+      <button class="btn-primary" id="btn-retry">↺ TRY AGAIN</button>
+      <button class="btn-secondary" id="btn-menu-lose">↩ MAIN MENU</button>
+    </div>
+  </div>
+
+  <!-- SHOP SCREEN -->
+  <div id="screen-shop" class="screen overlay-screen">
+    <div class="overlay-box shop-box">
+      <h2>🛒 SUPPLY SHOP</h2>
+      <p class="shop-coins">Your coins: 🪙 <strong id="shop-coins-val">0</strong></p>
+      <div id="shop-items"></div>
+      <button class="btn-secondary" id="btn-shop-close">↩ BACK</button>
+    </div>
+  </div>
+
+  <!-- STATS SCREEN -->
+  <div id="screen-stats" class="screen overlay-screen">
+    <div class="overlay-box">
+      <h2>📊 STATS</h2>
+      <div class="result-stats" id="stats-content"></div>
+      <button class="btn-secondary" id="btn-stats-close">↩ BACK</button>
+    </div>
+  </div>
+
+  <!-- HOW TO PLAY SCREEN -->
+  <div id="screen-how" class="screen overlay-screen">
+    <div class="overlay-box how-box">
+      <h2>❓ HOW TO PLAY</h2>
+      <div class="how-content">
+        <div class="how-item"><span class="how-icon">💣</span><p>A bomb is armed. Solve puzzles before the timer hits zero.</p></div>
+        <div class="how-item"><span class="how-icon">🧩</span><p>5 puzzle types: Wire Cut, Code Entry, Memory Sequence, Number Pattern, Switch Panel.</p></div>
+        <div class="how-item"><span class="how-icon">❤️</span><p>Wrong answers cost lives. Lose all lives = instant detonation.</p></div>
+        <div class="how-item"><span class="how-icon">💡</span><p>Use hints wisely — they're limited per game.</p></div>
+        <div class="how-item"><span class="how-icon">🪙</span><p>Earn coins by finishing fast. Spend them in the Shop.</p></div>
+        <div class="how-item"><span class="how-icon">🏆</span><p>Beat all 4 levels to become an elite bomb defusal agent.</p></div>
+      </div>
+      <button class="btn-secondary" id="btn-how-close">↩ BACK</button>
+    </div>
+  </div>
+
+  <!-- HINT MODAL -->
+  <div id="hint-modal" class="modal hidden">
+    <div class="modal-box">
+      <div class="modal-title">💡 HINT</div>
+      <div id="hint-text"></div>
+      <button class="btn-primary" id="btn-hint-close">GOT IT</button>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/modules/storage.js"></script>
+  <script src="js/modules/audio.js"></script>
+  <script src="js/modules/animation.js"></script>
+  <script src="js/modules/difficulty.js"></script>
+  <script src="js/modules/shop.js"></script>
+  <script src="js/modules/stats.js"></script>
+  <script src="js/modules/hud.js"></script>
+  <script src="js/modules/timer.js"></script>
+  <script src="js/modules/bomb.js"></script>
+  <script src="js/puzzles/wire.js"></script>
+  <script src="js/puzzles/code.js"></script>
+  <script src="js/puzzles/memory.js"></script>
+  <script src="js/puzzles/pattern.js"></script>
+  <script src="js/puzzles/switch.js"></script>
+  <script src="js/modules/puzzle-manager.js"></script>
+  <script src="js/modules/game.js"></script>
+  <script src="js/modules/screens.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
